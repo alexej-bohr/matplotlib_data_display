@@ -7,6 +7,11 @@ Created on 05.11.2019
 import sys
 import ctypes
 from ctypes import Structure
+import platform
+if (platform.system() == 'Windows'):
+    serialport = 'COM8'
+elif (platform.system() == 'Linux'):
+    serialport = '/dev/ttyUSB0'
 
 
 ''' Example Uart print
@@ -37,7 +42,7 @@ def pol2cart(rho, phi):
     y = rho * np.sin(phi)
     return(x, y)
 
-ser = serial.Serial('COM8',120000)
+ser = serial.Serial(serialport,120000)
 print(ser.name)
 counter = 0 
 run = True
